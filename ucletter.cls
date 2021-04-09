@@ -47,8 +47,9 @@
 
 \RequirePackage{ifthen}
 \RequirePackage{graphics}
-\RequirePackage{mathptm}
-\RequirePackage{times}
+\RequirePackage{newtxtext}
+\RequirePackage{newtxmath}
+% \RequirePackage{times}
 
 % Default is short return address
 \newcommand{\ucl@fromaddr}{short}
@@ -138,14 +139,29 @@
 \DeclareOption{ucsb}{
   \renewcommand{\ucl@univ}{UCSB}
   \renewcommand{\ucl@campus}{Santa Barbara}
-  \renewcommand{\ucl@school}{}
   \DeclareOption{cs}{
+    \renewcommand{\ucl@school}{}
     \renewcommand{\ucl@dept}{Department of Computer Science}
     \renewcommand{\ucl@deptphone}{}
     \renewcommand{\ucl@deptfax}{}
     \renewcommand{\ucl@depturl}{http://www.cs.ucsb.edu/}
     \renewcommand{\ucl@univstreet}{}
     \renewcommand{\ucl@univtown}{Santa Barbara, California 93106-5110}
+  }
+}
+
+\DeclareOption{ucsb}{
+  \renewcommand{\ucl@univ}{UCSB}
+  \renewcommand{\ucl@campus}{Santa Barbara}
+  \renewcommand{\ucl@depturl}{https://www.ece.ucsb.edu/}
+  \renewcommand{\ucl@univstreet}{Harold Frank Hall}
+  \renewcommand{\ucl@univtown}{Santa Barbara, California 93106}
+  \DeclareOption{ece}{
+    \dept{Department of Electrical and Computer Engineering}
+    \renewcommand{\ucl@school}{College of Engineering}
+    \renewcommand{\ucl@deptphone}{+1~(805)~893-5364}
+    \renewcommand{\ucl@deptfax}{}
+    \renewcommand{\ucl@depturl}{https://www.ece.ucsb.edu/}
   }
 }
 
@@ -251,7 +267,7 @@
     }
     {}
     \ifthenelse{\equal{\ucl@fromaddr}{date}}{}{
-      \ifthenelse{\equal{\fromname}{}}{}{\fromname, PhD Student\\}
+      \ifthenelse{\equal{\fromname}{}}{}{\fromname\\}
       \ifthenelse{\equal{\ucl@telephone}{}}{}{{\sc Phone:} \ucl@telephone\\}
       \ifthenelse{\equal{\ucl@fax}{}}{}{{\sc Fax:} \ucl@fax\\}
       \ifthenelse{\equal{\ucl@email}{}}{}{{\sc Email:} \ucl@email\\}
